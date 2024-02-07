@@ -44,7 +44,7 @@ toBeScored = wordInput
 
 
 
-let simpleScorer = function simpleScorer(toBeScored){
+let simpleScorer = function (toBeScored){
    let score = toBeScored.length;
 
 return score;
@@ -52,10 +52,10 @@ return score;
 
 
 
-let vowelBonusScorer = function vowelBonusScorer(toBeScored){
+let vowelBonusScorer = function (toBeScored){
    let vowels = ['a', 'e', 'i', 'o', 'u'];
    let score = 0;
-   let scrabArray = toBeScored.toLowerCase().split('');
+   let scrabArray = (toBeScored.toLowerCase().split(''));
    for (i = 0; i < scrabArray.length; i++){
       if (vowels.includes(scrabArray[i])){
          score += 3
@@ -67,7 +67,7 @@ let vowelBonusScorer = function vowelBonusScorer(toBeScored){
 };
 
 
-let scrabbleScorer = function scrabbleScorer(toBeScored){
+let scrabbleScorer = function (toBeScored) {
    let score = 0
    word = (toBeScored.toLowerCase().split(''));
       for (i = 0; i < word.length; i++){
@@ -95,20 +95,19 @@ scorerFunction: scrabbleScorer
 },
 ];
 
-   // // Simple scoring
-   // console.log("algorithm name: ", scoringAlgorithms[0].name);
-   // console.log("scoringFunction result: ", scoringAlgorithms[0].scoringFunction("JavaScript"));
 
 function scorerPrompt() {
-   let algoChoice = input.question("Which scoring algorithm would you like to use?\n\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\nEnter 0, 1, or 2: ")
-   score = scoringAlgorithms[algoChoice].scorerFunction()
+    let algoChoice = -1
+    while ((algoChoice > 3) || (algoChoice <= -1)){
 
-console.log(`Score for ${toBeScored}: ${score}`)
-   return score
-}
+   algoChoice = input.question("Which scoring algorithm would you like to use?\n\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\nEnter 0, 1, or 2: ")
+    }
+   score = scoringAlgorithms[algoChoice].scorerFunction(toBeScored);
+    
+console.log(`Score for ${toBeScored}: ${score}`);
+   return score;
+};
 
-
-// console.log(scorerPrompt())
 
 function transform(oldScoreKey) {
    const newScoreKey = {};
@@ -121,12 +120,6 @@ function transform(oldScoreKey) {
 };
 
 let newPointStructure = transform(oldPointStructure);
-
-// console.log(newPointStructure)
-// console.log("Scrabble scoring values for");
-// console.log("letter a: ", newPointStructure.a);
-// console.log("letter j: ", newPointStructure.j);
-// console.log("letter z: ", newPointStructure["z"]);
 
 function runProgram() {
    initialPrompt();
