@@ -97,8 +97,8 @@ scorerFunction: scrabbleScorer
 
 
 function scorerPrompt() {
-    let algoChoice = -1
-    while ((algoChoice > 3) || (algoChoice <= -1)){
+    let algoChoice = -1;
+    while ((algoChoice >= 3) || (algoChoice <= -1)){
 
    algoChoice = input.question("Which scoring algorithm would you like to use?\n\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\nEnter 0, 1, or 2: ")
     }
